@@ -18,6 +18,6 @@ export function getAll() {
 // Get all of the posts for a particular category.
 export function getAllForCategory(category){
 
-  return fetch(`${API_URL}/${category}`, {headers}).then((resp) => resp.json())
+  return fetch(`${API_URL}/${category}/posts`, {headers}).then((resp) => resp.json())
 
 }
