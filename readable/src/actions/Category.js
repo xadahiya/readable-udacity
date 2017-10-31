@@ -1,4 +1,4 @@
-import * as Category from '../api/Category';
+import * as CategoryApi from '../api/Category';
 import {GET_CATEGORIES_SUCCESS, GET_CATEGORIES_ERR,
  GET_ALL_FOR_CATEGORY_SUCCESS, GET_ALL_FOR_CATEGORY_ERR} from '../utils/ActionConstants';
 
@@ -13,7 +13,7 @@ export function getCategoriesErr(err) {
 
 export function getCategories() {
 
-  const data = Category.getAll()
+  const data = CategoryApi.getAll()
 
   return dispatch => {
 
@@ -37,7 +37,7 @@ export function getAllForCategoryErr(err){
 }
 
 export function getAllForCategory(category){
-  const data = Category.getAllForCategory(category)
+  const data = CategoryApi.getAllForCategory(category)
   return dispatch => {
     data.then(data => {
       console.log(data)

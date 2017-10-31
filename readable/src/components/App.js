@@ -3,7 +3,9 @@ import Categories from './Categories';
 class App extends Component {
   render() {
     console.log(this.props)
-    return ( <Categories/>   );
+    return (
+       <Categories/>
+     );
   }
 }
 

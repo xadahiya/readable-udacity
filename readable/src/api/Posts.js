@@ -15,6 +15,13 @@ export function getAll() {
 
 }
 
+// Get the details of a single post.
+export function get(id) {
+
+  return fetch(`${API_URL}/posts/${id}`, {headers}).then((resp) => resp.json())
+
+}
+
 // Add a new post.
 export function add(post) {
 
@@ -25,13 +32,6 @@ export function add(post) {
         body: JSON.stringify(post)
       }
     }).then((resp) => resp.json())}
-
-}
-
-// Get the details of a single post.
-export function get(id) {
-
-  return fetch(`${API_URL}/posts/${id}`, {headers}).then((resp) => resp.json())
 
 }
 
