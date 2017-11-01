@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as CategoryActions from '../actions/Category';
 import {Link} from 'react-router-dom';
+import { ButtonGroup} from 'react-bootstrap';
 
 class Categories extends Component {
 
@@ -11,27 +12,35 @@ class Categories extends Component {
   }
 
   genCategoryList = (categories) => {
+    const {getAllForCategory} = this.props;
     if (categories !== undefined) {
-      return categories.map((category) => (
-        <li key={category.path}>
-          <Link to={`/${category.path}/posts`}>{category.name}</Link>
-        </li>
-      ))
+      return (
+        <div>
+        <span className="cat-header"> Categories</span>
+        <ButtonGroup >
+
+
+          {categories.map((category) => {
+
+            return (
+                <Link key={category.path} to={`/${category.path}/posts`} onClick={() => getAllForCategory(category.name)} className="btn btn-default btn-lg cat-link">{category.name}</Link>
+            )
+          })
+        }
+        </ButtonGroup>
+        </div>
+      )
     } else {
       return (
-        <li>No Category found!
-        </li>
+        <h3>No Category found!</h3>
       )
     }
   }
   render() {
     const {categories} = this.props;
-    console.log(this.props)
     return (
       <div className="Categories">
-        <ul>
           {this.genCategoryList(categories)}
-        </ul>
       </div>
     );
   }
@@ -39,12 +48,13 @@ class Categories extends Component {
 
 function mapStateToProps(state) {
 
-  return {categories: state.categories}
+  return {categories: state.Categories.categories}
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getCategories: () => dispatch(CategoryActions.getCategories())
+    getCategories: () => dispatch(CategoryActions.getCategories()),
+    getAllForCategory: (category) => dispatch(CategoryActions.getAllForCategory(category))
   }
 }
 

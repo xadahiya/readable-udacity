@@ -6,10 +6,14 @@ import {Link} from 'react-router-dom';
 class Categories extends Component {
 
   componentWillMount() {
-    // console.log("fsf", this.props.match.params.category)
-    // getCategories(ca)
-    const {getAllForCategory} = this.props;
-    getAllForCategory(this.props.match.params.category)
+    // Manage direct url loading
+    const {getAllForCategory, category} = this.props;
+
+    if (category ){
+      getAllForCategory(category)
+    }
+    else{
+    }
   }
 
   getDateTimeFromTimestamp = (unixTimeStamp) => {
@@ -20,34 +24,39 @@ class Categories extends Component {
   genPostList = (posts) => {
     if (posts !== undefined && posts.length > 0) {
         return posts.map((post) => (
-          <li key={post.id}>
-            <div></div>
-            <h3>{post.title}</h3>
-            <p>{post.body}</p>
-            <p>Author : {post.author}</p>
-            <p>Comments : {post.commentCount}</p>
-            <p>
-            Votes: {post.voteScore}
-            </p>
-            <p>Time posted : {this.getDateTimeFromTimestamp(post.timestamp)}</p>
-            <Link to={`/${post.category}/posts`}>{post.category}</Link>
-          </li>
+
+
+          <div key={post.id} className="card">
+            <h2>{post.title}</h2>
+            <p className="lead">{post.body}</p>
+            <div className="post-meta1">
+            <span>Comments : {post.commentCount} </span>
+            <span>Votes: {post.voteScore} </span>
+            </div>
+            <div className="post-meta2">
+            <span>By: {post.author}</span>
+            <span> on: {this.getDateTimeFromTimestamp(post.timestamp)} in</span>
+            <Link to={`/${post.category}/posts`}> {post.category} </Link>
+            </div>
+          </div>
 
         ))
     } else {
       return (
-        <li>No Posts found!</li>
+        <h3>No Posts found!</h3>
       )
     }
   }
   render() {
-    const {posts} = this.props;
-    console.log(this.props)
+
+    let posts = this.props.posts;
+    if (this.props.category){
+      posts =  this.props.posts_cat;
+    }
     return (
       <div className="Posts">
-        <ul>
+      <h2> Posts</h2>
           {this.genPostList(posts)}
-        </ul>
       </div>
     );
   }
@@ -55,7 +64,7 @@ class Categories extends Component {
 
 function mapStateToProps(state) {
 
-  return {posts: state.posts}
+  return {posts_cat: state.Categories.posts, posts:state.Posts.posts}
 }
 
 const mapDispatchToProps = (dispatch) => {

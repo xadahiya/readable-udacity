@@ -1,11 +1,6 @@
 import * as PostsApi from '../api/Posts';
-import {GET_CATEGORIES_SUCCESS, GET_CATEGORIES_ERR,
- GET_ALL_FOR_CATEGORY_SUCCESS, GET_ALL_FOR_CATEGORY_ERR} from '../utils/ActionConstants';
-
-export const GET_ALL_POSTS_SUCCESS = 'GET_ALL_POSTS_SUCCESS';
-export const GET_ALL_POSTS_ERR = 'GET_ALL_POSTS_ERR';
-export const GET_POST_SUCCESS = 'GET_POST_SUCCESS';
-export const GET_POST_ERR = 'GET_POST_ERR';
+import {GET_POST_SUCCESS, GET_POST_ERR,
+ GET_ALL_POSTS_SUCCESS, GET_ALL_POSTS_ERR} from '../utils/ActionConstants';
 
 // Actions related to getCategories()
 export function getAllSuccess(data) {
@@ -36,7 +31,7 @@ export function getSuccess(data){
 
 }
 
-export function getAllForCategoryErr(err){
+export function getErr(err){
 
   return {type: GET_POST_ERR, err}
 

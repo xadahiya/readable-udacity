@@ -1,7 +1,7 @@
 import {GET_CATEGORIES_SUCCESS, GET_CATEGORIES_ERR,
 GET_ALL_FOR_CATEGORY_ERR, GET_ALL_FOR_CATEGORY_SUCCESS} from '../utils/ActionConstants';;
 
-function getCategoriesReducer(state = {}, action) {
+function Categories(state = {}, action) {
 
   switch (action.type) {
     case GET_CATEGORIES_SUCCESS:
@@ -19,4 +19,4 @@ function getCategoriesReducer(state = {}, action) {
   }
 }
 
-export default getCategoriesReducer
+export default Categories

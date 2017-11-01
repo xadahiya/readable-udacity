@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './components/App';
-import Posts from './components/Posts'
+import './styles/index.css';
+import 'bootstrap/dist/css/bootstrap.css';
+
+import App from './containers/App';
 import registerServiceWorker from './registerServiceWorker';
 import { createStore, applyMiddleware, compose } from 'redux';
-import Category from './reducers/Category';
+import reducer from './reducers/Main';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import PropTypes from 'prop-types';
@@ -15,7 +16,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const store = createStore(
-  Category,
+  reducer,
   composeEnhancers(
     applyMiddleware(thunk)
   )
@@ -26,7 +27,7 @@ const Root = ({store}) => (
     <Router>
     <Switch>
     <Route exact path="/" component={App} />
-      <Route path="/:category/posts" component={Posts} />
+      <Route path="/:category/posts" component={App} />
       </Switch>
     </Router>
   </Provider>
