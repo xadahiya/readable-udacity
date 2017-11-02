@@ -39,7 +39,7 @@ export function vote(id, vote = 'upVote') {
     return fetch(`${API_URL}/posts/${id}`, {
       headers: headers,
         'method': 'POST',
-        body: JSON.stringify(vote)
+        body: JSON.stringify({option: vote})
     }).then((resp) => resp.json())
   }
 

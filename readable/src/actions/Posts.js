@@ -1,6 +1,6 @@
 import * as PostsApi from '../api/Posts';
 import {GET_POST_SUCCESS, GET_POST_ERR,
- GET_ALL_POSTS_SUCCESS, GET_ALL_POSTS_ERR, CLEAR_FORM_POST} from '../utils/ActionConstants';
+ GET_ALL_POSTS_SUCCESS, GET_ALL_POSTS_ERR, VOTE_ON_POST, CLEAR_FORM_POST, DELETE_POST} from '../utils/ActionConstants';
 
 // Actions related to getCategories()
 export function getAllSuccess(data) {
@@ -18,7 +18,6 @@ export function getAll() {
   return dispatch => {
 
     data.then((data) => {
-      console.log(data)
       dispatch(getAllSuccess(data))}).catch(err => dispatch(getAllErr(err)))
   }
 }
@@ -37,10 +36,6 @@ export function getErr(err){
 
 }
 
-export function clearPost(){
-  return {type: CLEAR_FORM_POST}
-}
-
 export function get(id){
   const data = PostsApi.get(id)
   return dispatch => {
@@ -49,4 +44,19 @@ export function get(id){
       dispatch(getSuccess(data))
     }).catch(err => dispatch(getErr(err)))
   }
+}
+
+
+export function clearPost(){
+  return {type: CLEAR_FORM_POST}
+}
+
+export function deletePost(post){
+  PostsApi.del(post.id)
+  return {type: DELETE_POST, post}
+}
+
+export function vote(id, vote){
+  PostsApi.vote(id, vote)
+  return {type: VOTE_ON_POST, id, vote}
 }

@@ -1,5 +1,6 @@
 import {GET_POST_SUCCESS, GET_POST_ERR,
-GET_ALL_POSTS_ERR, GET_ALL_POSTS_SUCCESS, CLEAR_FORM_POST} from '../utils/ActionConstants';;
+GET_ALL_POSTS_ERR, GET_ALL_POSTS_SUCCESS,
+ CLEAR_FORM_POST, DELETE_POST, VOTE_ON_POST} from '../utils/ActionConstants';;
 
 function Posts(state = {}, action) {
 
@@ -16,6 +17,24 @@ function Posts(state = {}, action) {
       return state
     case CLEAR_FORM_POST:
     return {...state, post:{}}
+    case DELETE_POST:
+      return {...state, posts: state.posts.filter((post) => {
+        return post.id !== action.post.id
+      })}
+    case VOTE_ON_POST:
+      return {...state, posts:state.posts.map((post) => {
+        if (post.id === action.id){
+          if(action.vote === "upVote"){
+            post.voteScore +=1
+          }
+          else if(action.vote === "downVote"){
+            post.voteScore -=1
+          }
+        }
+
+        return post
+      })}
+
     default:
       return state
   }

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as CategoryActions from '../actions/Category';
-import * as PostsApi from '../api/Posts';
+import * as PostActions from '../actions/Posts';
 import {Link} from 'react-router-dom';
 import {Button} from 'react-bootstrap';
 
@@ -10,7 +10,6 @@ class Categories extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.handleDelete = this.handleDelete.bind(this);
   }
 
 
@@ -30,10 +29,6 @@ class Categories extends Component {
     return ('0' + date.getDate()).slice(-2) + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + date.getFullYear() + ' ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
   }
 
-  handleDelete = (post) => {
-    PostsApi.del(post.id)
-  }
-
   genPostList = (posts) => {
     if (posts !== undefined && posts.length > 0) {
         return posts.map((post) => (
@@ -45,11 +40,14 @@ class Categories extends Component {
             <div className="post-meta1">
             <span>Comments : {post.commentCount} </span>
             <span>Votes: {post.voteScore} </span>
+            <Button onClick={() => this.props.vote(post.id, "upVote")}> Upvote </Button>
+            <Button onClick={() => this.props.vote(post.id, "downVote")}> Downvote </Button>
+
             </div>
             <div className="post-meta2">
             <span>By: {post.author}</span>
             <span> on: {this.getDateTimeFromTimestamp(post.timestamp)} in</span>
-            <Button onClick={() => this.handleDelete(post)}> delete </Button>
+            <Button onClick={() => this.props.deletePost(post)}> delete </Button>
             <Link to={`/${post.category}/posts`}> {post.category} </Link>
             <Link to={`/${post.category}/posts/${post.id}/edit`}> Edit </Link>
             <Link to={`/${post.category}/posts/${post.id}`}> View </Link>
@@ -85,7 +83,9 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAllForCategory: (category) => dispatch(CategoryActions.getAllForCategory(category))
+    getAllForCategory: (category) => dispatch(CategoryActions.getAllForCategory(category)),
+    deletePost: (post) => dispatch(PostActions.deletePost(post)),
+    vote: (id, vote) => dispatch(PostActions.vote(id, vote))
   }
 }
 
