@@ -36,3 +36,11 @@
   display: inline-block;
   float: right;
 }
+
+.btn-new-post{
+  float:right;
+  display:inline-block;
+}
+.categories {
+  display:inline-block;
+}

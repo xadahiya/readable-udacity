@@ -4,6 +4,7 @@ import Categories from '../components/Categories';
 import Posts from '../components/Posts';
 import {connect} from 'react-redux';
 import * as PostsActions from '../actions/Posts';
+import { Link } from 'react-router-dom';
 
 
 class App extends Component {
@@ -22,6 +23,7 @@ class App extends Component {
       <div className="container-fluid">
       <Navbar/>
       <Categories/>
+      <Link to="/new" className="btn btn-primary btn-lg btn-new-post">Add Post</Link>
       <Posts  category={this.props.match.params.category}/>
        </div>
      );

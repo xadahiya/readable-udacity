@@ -15,7 +15,7 @@ class Categories extends Component {
     const {getAllForCategory} = this.props;
     if (categories !== undefined) {
       return (
-        <div>
+        <div >
         <span className="cat-header"> Categories</span>
         <ButtonGroup >
 
@@ -39,7 +39,7 @@ class Categories extends Component {
   render() {
     const {categories} = this.props;
     return (
-      <div className="Categories">
+      <div className="categories">
           {this.genCategoryList(categories)}
       </div>
     );
