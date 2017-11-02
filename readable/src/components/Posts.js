@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Post from './Post';
 import * as PostActions from '../actions/Posts';
 
-class Categories extends Component {
+class Posts extends Component {
 
   componentWillMount() {
     // Manage direct url loading
@@ -23,7 +23,7 @@ class Categories extends Component {
     if (posts !== undefined && posts.length > 0) {
         return posts.map((post) => (
 
-          <Post post={post} vote={this.props.vote} deletePost={this.props.deletePost}/>
+          <Post post={post} key={post.id} vote={this.props.vote} deletePost={this.props.deletePost}/>
 
         ))
     } else {
@@ -57,4 +57,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Categories);
+export default connect(mapStateToProps, mapDispatchToProps)(Posts);

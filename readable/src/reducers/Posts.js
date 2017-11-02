@@ -8,6 +8,7 @@ function Posts(state = {}, action) {
 
   switch (action.type) {
     case GET_POST_SUCCESS:
+    console.log(action.data)
       return {...state, post: action.data}
     case GET_POST_ERR:
       console.log(action.err);
@@ -29,6 +30,8 @@ function Posts(state = {}, action) {
         return post.id !== action.post.id
       })}
     case VOTE_ON_POST:
+      if (state.posts){
+
       return {...state, posts:state.posts.map((post) => {
         if (post.id === action.id){
           if(action.vote === "upVote"){
@@ -38,9 +41,16 @@ function Posts(state = {}, action) {
             post.voteScore -=1
           }
         }
-
         return post
-      })}
+      }
+
+      )
+    }
+  }
+  else{
+    return state
+  }
+
     case SORT_POSTS:
     console.log("Sorting by ", action.prop)
       return {...state, posts: state['posts'].sort((a,b) => a[action.prop]<b[action.prop]), sortKey: action.prop}

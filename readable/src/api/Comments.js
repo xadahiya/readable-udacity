@@ -24,8 +24,6 @@ export function addToPost(comment) {
   }).then((resp) => resp.json())
 }
 
-}
-
 // Get the details for a single comment.
 export function getDetails(id) {
 
@@ -40,7 +38,7 @@ if (vote === 'upVote' || vote === 'downVote') {
   return fetch(`${API_URL}/comments/${id}`, {
     headers: headers,
         'method': 'POST',
-        body: JSON.stringify(vote)
+        body: JSON.stringify({option: vote})
     }).then((resp) => resp.json())}
 }
 
