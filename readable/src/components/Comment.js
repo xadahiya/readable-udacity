@@ -31,7 +31,7 @@ export default class Comment extends Component {
           <span>
             on: {this.getDateTimeFromTimestamp(comment.timestamp)}
             in</span>
-          <Button onClick={() => this.props.deletePost(comment)}>
+          <Button onClick={() => this.props.deleteComment(comment)}>
             delete
           </Button>
           <Link to={`/comments/${comment.id}/edit`}>
