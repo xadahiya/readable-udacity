@@ -9,7 +9,7 @@
   width:100px;
 }
 
-.cat-header{
+.header{
   font-size: 25px;
   padding-right: 25px;
 }
@@ -39,8 +39,19 @@
 
 .btn-new-post{
   float:right;
+  margin-right:50px;
   display:inline-block;
 }
 .categories {
   display:inline-block;
+}
+
+.sort-select-container{
+  width:300px;
+  float:right;
+}
+
+.sort-select{
+  display: inline-block;
+  width:150px;
 }

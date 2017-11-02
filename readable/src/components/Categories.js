@@ -17,7 +17,7 @@ class Categories extends Component {
     if (categories !== undefined) {
       return (
         <div >
-        <span className="cat-header"> Categories</span>
+        <span className="header"> Categories</span>
         <ButtonGroup >
 
 

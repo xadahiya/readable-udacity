@@ -2,7 +2,8 @@ import * as PostsApi from '../api/Posts';
 import {GET_POST_SUCCESS, GET_POST_ERR,
  GET_ALL_POSTS_SUCCESS, GET_ALL_POSTS_ERR,
   VOTE_ON_POST, CLEAR_FORM_POST, DELETE_POST,
-GET_ALL_POSTS_FOR_CATEGORY_SUCCESS, GET_ALL_POSTS_FOR_CATEGORY_ERR} from '../utils/ActionConstants';
+GET_ALL_POSTS_FOR_CATEGORY_SUCCESS, GET_ALL_POSTS_FOR_CATEGORY_ERR,
+SORT_POSTS} from '../utils/ActionConstants';
 
 // Actions related to getCategories()
 export function getAllSuccess(data) {
@@ -85,4 +86,8 @@ export function getAllForCategory(category){
       dispatch(getAllForCategorySuccess(data))
     }).catch(err => dispatch(getAllForCategoryErr(err)))
   }
+}
+
+export function sortBy(prop){
+  return {type:SORT_POSTS, prop}
 }

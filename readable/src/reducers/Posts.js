@@ -1,7 +1,8 @@
 import {GET_POST_SUCCESS, GET_POST_ERR,
 GET_ALL_POSTS_ERR, GET_ALL_POSTS_SUCCESS,
  CLEAR_FORM_POST, DELETE_POST, VOTE_ON_POST,
-GET_ALL_POSTS_FOR_CATEGORY_ERR, GET_ALL_POSTS_FOR_CATEGORY_SUCCESS} from '../utils/ActionConstants';;
+GET_ALL_POSTS_FOR_CATEGORY_ERR, GET_ALL_POSTS_FOR_CATEGORY_SUCCESS,
+SORT_POSTS} from '../utils/ActionConstants';;
 
 function Posts(state = {}, action) {
 
@@ -21,7 +22,6 @@ function Posts(state = {}, action) {
       case GET_ALL_POSTS_FOR_CATEGORY_ERR:
         console.log(action.err);
         return state
-
     case CLEAR_FORM_POST:
     return {...state, post:{}}
     case DELETE_POST:
@@ -41,6 +41,9 @@ function Posts(state = {}, action) {
 
         return post
       })}
+    case SORT_POSTS:
+    console.log("Sorting by ", action.prop)
+      return {...state, posts: state['posts'].sort((a,b) => a[action.prop]<b[action.prop]), sortKey: action.prop}
 
     default:
       return state
