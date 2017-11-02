@@ -1,6 +1,8 @@
 import * as PostsApi from '../api/Posts';
 import {GET_POST_SUCCESS, GET_POST_ERR,
- GET_ALL_POSTS_SUCCESS, GET_ALL_POSTS_ERR, VOTE_ON_POST, CLEAR_FORM_POST, DELETE_POST} from '../utils/ActionConstants';
+ GET_ALL_POSTS_SUCCESS, GET_ALL_POSTS_ERR,
+  VOTE_ON_POST, CLEAR_FORM_POST, DELETE_POST,
+GET_ALL_POSTS_FOR_CATEGORY_SUCCESS, GET_ALL_POSTS_FOR_CATEGORY_ERR} from '../utils/ActionConstants';
 
 // Actions related to getCategories()
 export function getAllSuccess(data) {
@@ -59,4 +61,28 @@ export function deletePost(post){
 export function vote(id, vote){
   PostsApi.vote(id, vote)
   return {type: VOTE_ON_POST, id, vote}
+}
+
+// Actions related to getAllForCategory()
+
+export function getAllForCategorySuccess(data){
+
+  return {type: GET_ALL_POSTS_FOR_CATEGORY_SUCCESS, data}
+
+}
+
+export function getAllForCategoryErr(err){
+
+  return {type: GET_ALL_POSTS_FOR_CATEGORY_ERR, err}
+
+}
+
+export function getAllForCategory(category){
+  const data = PostsApi.getAllForCategory(category)
+  return dispatch => {
+    data.then(data => {
+      console.log(data)
+      dispatch(getAllForCategorySuccess(data))
+    }).catch(err => dispatch(getAllForCategoryErr(err)))
+  }
 }

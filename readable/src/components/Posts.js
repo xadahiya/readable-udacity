@@ -1,17 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import * as CategoryActions from '../actions/Category';
 import * as PostActions from '../actions/Posts';
 import {Link} from 'react-router-dom';
 import {Button} from 'react-bootstrap';
 
 class Categories extends Component {
-
-  constructor(props, context) {
-    super(props, context);
-
-  }
-
 
   componentWillMount() {
     // Manage direct url loading
@@ -19,8 +12,6 @@ class Categories extends Component {
 
     if (category ){
       getAllForCategory(category)
-    }
-    else{
     }
   }
 
@@ -64,9 +55,6 @@ class Categories extends Component {
   render() {
 
     let posts = this.props.posts;
-    if (this.props.category){
-      posts =  this.props.posts_cat;
-    }
     return (
       <div className="Posts">
       <h2> Posts</h2>
@@ -78,12 +66,12 @@ class Categories extends Component {
 
 function mapStateToProps(state) {
 
-  return {posts_cat: state.Categories.posts, posts:state.Posts.posts}
+  return {posts:state.Posts.posts}
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAllForCategory: (category) => dispatch(CategoryActions.getAllForCategory(category)),
+    getAllForCategory: (category) => dispatch(PostActions.getAllForCategory(category)),
     deletePost: (post) => dispatch(PostActions.deletePost(post)),
     vote: (id, vote) => dispatch(PostActions.vote(id, vote))
   }

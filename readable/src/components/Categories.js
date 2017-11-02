@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as CategoryActions from '../actions/Category';
+import * as PostsActions from '../actions/Posts';
 import {Link} from 'react-router-dom';
 import { ButtonGroup} from 'react-bootstrap';
 
@@ -54,7 +55,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => {
   return {
     getCategories: () => dispatch(CategoryActions.getCategories()),
-    getAllForCategory: (category) => dispatch(CategoryActions.getAllForCategory(category))
+    getAllForCategory: (category) => dispatch(PostsActions.getAllForCategory(category))
   }
 }
 

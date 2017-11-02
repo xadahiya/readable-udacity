@@ -14,10 +14,3 @@ export function getAll() {
   return fetch(`${API_URL}/categories`, {headers}).then((resp) => resp.json())
 
 }
-
-// Get all of the posts for a particular category.
-export function getAllForCategory(category){
-
-  return fetch(`${API_URL}/${category}/posts`, {headers}).then((resp) => resp.json())
-
-}

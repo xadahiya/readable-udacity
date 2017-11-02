@@ -1,6 +1,7 @@
 import {GET_POST_SUCCESS, GET_POST_ERR,
 GET_ALL_POSTS_ERR, GET_ALL_POSTS_SUCCESS,
- CLEAR_FORM_POST, DELETE_POST, VOTE_ON_POST} from '../utils/ActionConstants';;
+ CLEAR_FORM_POST, DELETE_POST, VOTE_ON_POST,
+GET_ALL_POSTS_FOR_CATEGORY_ERR, GET_ALL_POSTS_FOR_CATEGORY_SUCCESS} from '../utils/ActionConstants';;
 
 function Posts(state = {}, action) {
 
@@ -15,6 +16,12 @@ function Posts(state = {}, action) {
     case GET_ALL_POSTS_ERR:
       console.log(action.err);
       return state
+      case GET_ALL_POSTS_FOR_CATEGORY_SUCCESS:
+        return {...state, posts: action.data}
+      case GET_ALL_POSTS_FOR_CATEGORY_ERR:
+        console.log(action.err);
+        return state
+
     case CLEAR_FORM_POST:
     return {...state, post:{}}
     case DELETE_POST:
