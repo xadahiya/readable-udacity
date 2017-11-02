@@ -1,6 +1,6 @@
 import * as PostsApi from '../api/Posts';
 import {GET_POST_SUCCESS, GET_POST_ERR,
- GET_ALL_POSTS_SUCCESS, GET_ALL_POSTS_ERR} from '../utils/ActionConstants';
+ GET_ALL_POSTS_SUCCESS, GET_ALL_POSTS_ERR, CLEAR_FORM_POST} from '../utils/ActionConstants';
 
 // Actions related to getCategories()
 export function getAllSuccess(data) {
@@ -35,6 +35,10 @@ export function getErr(err){
 
   return {type: GET_POST_ERR, err}
 
+}
+
+export function clearPost(){
+  return {type: CLEAR_FORM_POST}
 }
 
 export function get(id){

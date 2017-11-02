@@ -4,7 +4,7 @@ import './styles/index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import App from './containers/App';
-import PostForm from './components/PostForm';
+import NewOrEditPost from './containers/NewOrEditPost';
 import registerServiceWorker from './registerServiceWorker';
 import { createStore, applyMiddleware, compose } from 'redux';
 import reducer from './reducers/Main';
@@ -27,9 +27,11 @@ const Root = ({store}) => (
   <Provider store={store}>
     <Router>
     <Switch>
-    <Route exact path="/new" component={PostForm} />
+    <Route exact path="/new" component={NewOrEditPost} />
     <Route exact path="/" component={App} />
-      <Route path="/:category/posts" component={App} />
+    <Route exact path="/:category/posts" component={App} />
+    <Route exact path="/:category/posts/:id" component={App} />
+      <Route exact path="/:category/posts/:id/edit" component={NewOrEditPost} />
       </Switch>
     </Router>
   </Provider>

@@ -1,5 +1,5 @@
 import {GET_POST_SUCCESS, GET_POST_ERR,
-GET_ALL_POSTS_ERR, GET_ALL_POSTS_SUCCESS} from '../utils/ActionConstants';;
+GET_ALL_POSTS_ERR, GET_ALL_POSTS_SUCCESS, CLEAR_FORM_POST} from '../utils/ActionConstants';;
 
 function Posts(state = {}, action) {
 
@@ -14,6 +14,8 @@ function Posts(state = {}, action) {
     case GET_ALL_POSTS_ERR:
       console.log(action.err);
       return state
+    case CLEAR_FORM_POST:
+    return {...state, post:{}}
     default:
       return state
   }
