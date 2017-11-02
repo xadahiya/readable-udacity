@@ -17,6 +17,7 @@ export function getCategories() {
   return dispatch => {
 
     data.then((data) => {
-      dispatch(getCategoriesSuccess(data.categories))}).catch(err => dispatch(getCategoriesErr(err)))
+      dispatch(getCategoriesSuccess(data.categories))
+    }).catch(err => dispatch(getCategoriesErr(err)))
   }
 }

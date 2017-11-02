@@ -25,10 +25,9 @@ export function get(id) {
 export function add(post) {
 
   return fetch(`${API_URL}/posts`, {
-      method: 'POST',
-      headers:headers,
-      body: JSON.stringify(post),
-
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify(post)
   }).then((resp) => resp.json())
 }
 
@@ -38,19 +37,19 @@ export function vote(id, vote = 'upVote') {
   if (vote === 'upVote' || vote === 'downVote') {
     return fetch(`${API_URL}/posts/${id}`, {
       headers: headers,
-        'method': 'POST',
-        body: JSON.stringify({option: vote})
+      'method': 'POST',
+      body: JSON.stringify({option: vote})
     }).then((resp) => resp.json())
   }
 
 }
 
-export function del(id){
+export function del(id) {
 
   return fetch(`${API_URL}/posts/${id}`, {
     headers: headers,
-      'method': 'DELETE'
-    }).then((resp) => resp.json())
+    'method': 'DELETE'
+  }).then((resp) => resp.json())
 
 }
 
@@ -59,16 +58,14 @@ export function edit(id, post) {
 
   return fetch(`${API_URL}/posts/${id}`, {
     headers: headers,
-      'method': 'PUT',
-      body: JSON.stringify(post)
-    }).then((resp) => resp.json())
-  }
+    'method': 'PUT',
+    body: JSON.stringify(post)
+  }).then((resp) => resp.json())
+}
 
+// Get all of the posts for a particular category.
+export function getAllForCategory(category) {
 
+  return fetch(`${API_URL}/${category}/posts`, {headers}).then((resp) => resp.json())
 
-  // Get all of the posts for a particular category.
-  export function getAllForCategory(category){
-
-    return fetch(`${API_URL}/${category}/posts`, {headers}).then((resp) => resp.json())
-
-  }
+}

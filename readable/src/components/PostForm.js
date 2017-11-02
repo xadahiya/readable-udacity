@@ -9,22 +9,24 @@ import * as PostsApi from '../api/Posts';
 class PostForm extends Component {
 
   constructor(props) {
-        super(props);
+    super(props);
 
-        this.state = {
-          title: "",
-          author: "",
-          body: "",
-          category: ""
-        };
+    this.state = {
+      title: "",
+      author: "",
+      body: "",
+      category: ""
+    };
 
-        this.handleChange = this.handleChange.bind(this);
-    }
+    this.handleChange = this.handleChange.bind(this);
+  }
 
-    handleChange = (event) => {
-        this.setState({ [event.target.id] : event.target.value });
-        console.log(this.state)
-      };
+  handleChange = (event) => {
+    this.setState({
+      [event.target.id]: event.target.value
+    });
+    console.log(this.state)
+  };
 
   componentWillMount() {
     const {getCategories, getPost, post_id} = this.props;
@@ -39,14 +41,16 @@ class PostForm extends Component {
   componentWillReceiveProps(newProps) {
     console.log("sdfaf", newProps.post)
 
-    this.setState({...newProps.post});
-}
+    this.setState({
+      ...newProps.post
+    });
+  }
 
-componentWillUnmount(){
-  const {clearPost} = this.props;
+  componentWillUnmount() {
+    const {clearPost} = this.props;
 
-  clearPost()
-}
+    clearPost()
+  }
 
   handleSubmit = (event) => {
     const {post_id} = this.props;
@@ -56,8 +60,7 @@ componentWillUnmount(){
     formData.timestamp = Date.now()
     if (post_id !== undefined) {
       PostsApi.edit(post_id, formData)
-    }
-    else{
+    } else {
       PostsApi.add(formData);
     }
 

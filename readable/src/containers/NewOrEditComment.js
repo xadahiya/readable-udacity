@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import Navbar from '../components/Navbar';
-import PostForm from '../components/PostForm';
+import CommentForm from '../components/CommentForm';
 import {connect} from 'react-redux';
 
-class NewOrEditPost extends Component {
+class NewOrEditComment extends Component {
 
   componentWillMount() {}
 
@@ -11,7 +11,7 @@ class NewOrEditPost extends Component {
     return (
       <div className="container-fluid">
         <Navbar/>
-        <PostForm post_id={this.props.match.params.id}/>
+        <CommentForm post_id={this.props.match.params.id} comment_id={this.props.match.params.comment_id}/>
       </div>
     );
   }
@@ -25,4 +25,4 @@ const mapDispatchToProps = (dispatch) => {
   return {}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewOrEditPost);
+export default connect(mapStateToProps, mapDispatchToProps)(NewOrEditComment);

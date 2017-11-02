@@ -27,36 +27,37 @@ export function addToPost(comment) {
 // Get the details for a single comment.
 export function getDetails(id) {
 
-return fetch(`${API_URL}/comments/${id}`, {headers}).then((resp) => resp.json())
+  return fetch(`${API_URL}/comments/${id}`, {headers}).then((resp) => resp.json())
 
 }
 
 // Used for voting on a comment.
 export function vote(id, vote = 'upVote') {
 
-if (vote === 'upVote' || vote === 'downVote') {
-  return fetch(`${API_URL}/comments/${id}`, {
-    headers: headers,
-        'method': 'POST',
-        body: JSON.stringify({option: vote})
-    }).then((resp) => resp.json())}
+  if (vote === 'upVote' || vote === 'downVote') {
+    return fetch(`${API_URL}/comments/${id}`, {
+      headers: headers,
+      'method': 'POST',
+      body: JSON.stringify({option: vote})
+    }).then((resp) => resp.json())
+  }
 }
 
 // Edit the details of an existing comment.
 export function edit(id, comment) {
 
-return fetch(`${API_URL}/comments/${id}`, {
-  headers: headers,
-        'method': 'PUT',
-      body: JSON.stringify(comment)
+  return fetch(`${API_URL}/comments/${id}`, {
+    headers: headers,
+    'method': 'PUT',
+    body: JSON.stringify(comment)
   }).then((resp) => resp.json())
 }
 
 // Sets a comment's deleted flag to `true`.
 export function del(id) {
 
-return fetch(`${API_URL}/comments/${id}`, {
-  headers: headers,
-      'method': 'DELETE'
-    }
-  ).then((resp) => resp.json())}
+  return fetch(`${API_URL}/comments/${id}`, {
+    headers: headers,
+    'method': 'DELETE'
+  }).then((resp) => resp.json())
+}

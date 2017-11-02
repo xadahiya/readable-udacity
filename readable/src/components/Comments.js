@@ -9,8 +9,7 @@ class Comments extends Component {
     // Manage direct url loading
     const {getAllForPost, post_id} = this.props;
 
-    console.log("fsdf", post_id)
-    if (post_id ){
+    if (post_id) {
       getAllForPost(post_id)
     }
   }
@@ -23,10 +22,7 @@ class Comments extends Component {
   genCommentList = (comments) => {
     console.log(comments)
     if (comments !== undefined && comments.length > 0) {
-        return comments.map((comment) => (
-          (! comment.deleted)
-             && (<Comment key={comment.id} comment={comment} vote={this.props.vote} deleteComment={this.props.deleteComment}/>)
-        ))
+      return comments.map((comment) => ((!comment.deleted) && (<Comment key={comment.id} comment={comment} vote={this.props.vote} deleteComment={this.props.deleteComment}/>)))
     } else {
       return (
         <h3>No Comments found!</h3>
@@ -38,8 +34,9 @@ class Comments extends Component {
     let comments = this.props.comments;
     return (
       <div className="Comments">
-      <h3> Comments</h3>
-          {this.genCommentList(comments)}
+        <h2>
+          Comments</h2>
+        {this.genCommentList(comments)}
       </div>
     );
   }
@@ -47,7 +44,7 @@ class Comments extends Component {
 
 function mapStateToProps(state) {
 
-  return {comments:state.Comments.comments}
+  return {comments: state.Comments.comments}
 }
 
 const mapDispatchToProps = (dispatch) => {

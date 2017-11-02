@@ -4,7 +4,10 @@ function Categories(state = {}, action) {
 
   switch (action.type) {
     case GET_CATEGORIES_SUCCESS:
-      return {...state, categories: action.data}
+      return {
+        ...state,
+        categories: action.data
+      }
     case GET_CATEGORIES_ERR:
       console.log(action.err);
       return state

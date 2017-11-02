@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import * as CategoryActions from '../actions/Category';
 import * as PostsActions from '../actions/Posts';
 import {Link} from 'react-router-dom';
-import { ButtonGroup} from 'react-bootstrap';
+import {ButtonGroup} from 'react-bootstrap';
 
 class Categories extends Component {
 
@@ -17,18 +17,18 @@ class Categories extends Component {
     if (categories !== undefined) {
       return (
         <div >
-        <span className="header"> Categories</span>
-        <ButtonGroup >
+          <span className="header">
+            Categories</span>
+          <ButtonGroup >
 
+            {categories.map((category) => {
 
-          {categories.map((category) => {
-
-            return (
+              return (
                 <Link key={category.path} to={`/${category.path}/posts`} onClick={() => getAllForCategory(category.name)} className="btn btn-default btn-lg cat-link">{category.name}</Link>
-            )
-          })
-        }
-        </ButtonGroup>
+              )
+            })
+}
+          </ButtonGroup>
         </div>
       )
     } else {
@@ -41,7 +41,7 @@ class Categories extends Component {
     const {categories} = this.props;
     return (
       <div className="categories">
-          {this.genCategoryList(categories)}
+        {this.genCategoryList(categories)}
       </div>
     );
   }

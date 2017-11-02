@@ -9,7 +9,7 @@ class Posts extends Component {
     // Manage direct url loading
     const {getAllForCategory, category} = this.props;
 
-    if (category ){
+    if (category) {
       getAllForCategory(category)
     }
   }
@@ -21,11 +21,7 @@ class Posts extends Component {
 
   genPostList = (posts) => {
     if (posts !== undefined && posts.length > 0) {
-        return posts.map((post) => (
-
-          <Post post={post} key={post.id} vote={this.props.vote} deletePost={this.props.deletePost}/>
-
-        ))
+      return posts.map((post) => (<Post post={post} key={post.id} vote={this.props.vote} deletePost={this.props.deletePost}/>))
     } else {
       return (
         <h3>No Posts found!</h3>
@@ -37,8 +33,9 @@ class Posts extends Component {
     let posts = this.props.posts;
     return (
       <div className="Posts">
-      <h2> Posts</h2>
-          {this.genPostList(posts)}
+        <h2>
+          Posts</h2>
+        {this.genPostList(posts)}
       </div>
     );
   }
@@ -46,7 +43,7 @@ class Posts extends Component {
 
 function mapStateToProps(state) {
 
-  return {posts:state.Posts.posts}
+  return {posts: state.Posts.posts}
 }
 
 const mapDispatchToProps = (dispatch) => {
