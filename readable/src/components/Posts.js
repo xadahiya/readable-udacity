@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import Post from './Post';
 import * as PostActions from '../actions/Posts';
-import {Link} from 'react-router-dom';
-import {Button} from 'react-bootstrap';
 
 class Categories extends Component {
 
@@ -24,26 +23,7 @@ class Categories extends Component {
     if (posts !== undefined && posts.length > 0) {
         return posts.map((post) => (
 
-
-          <div key={post.id} className="card">
-            <h2>{post.title}</h2>
-            <p className="lead">{post.body}</p>
-            <div className="post-meta1">
-            <span>Comments : {post.commentCount} </span>
-            <span>Votes: {post.voteScore} </span>
-            <Button onClick={() => this.props.vote(post.id, "upVote")}> Upvote </Button>
-            <Button onClick={() => this.props.vote(post.id, "downVote")}> Downvote </Button>
-
-            </div>
-            <div className="post-meta2">
-            <span>By: {post.author}</span>
-            <span> on: {this.getDateTimeFromTimestamp(post.timestamp)} in</span>
-            <Button onClick={() => this.props.deletePost(post)}> delete </Button>
-            <Link to={`/${post.category}/posts`}> {post.category} </Link>
-            <Link to={`/${post.category}/posts/${post.id}/edit`}> Edit </Link>
-            <Link to={`/${post.category}/posts/${post.id}`}> View </Link>
-            </div>
-          </div>
+          <Post post={post} vote={this.props.vote} deletePost={this.props.deletePost}/>
 
         ))
     } else {

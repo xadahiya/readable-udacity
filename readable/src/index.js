@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './styles/index.css';
 
 import App from './containers/App';
+import PostDetails from './components/PostDetails';
 import NewOrEditPost from './containers/NewOrEditPost';
 import registerServiceWorker from './registerServiceWorker';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -30,7 +31,7 @@ const Root = ({store}) => (
     <Route exact path="/new" component={NewOrEditPost} />
     <Route exact path="/" component={App} />
     <Route exact path="/:category/posts" component={App} />
-    <Route exact path="/:category/posts/:id" component={App} />
+    <Route exact path="/:category/posts/:id" component={PostDetails} />
       <Route exact path="/:category/posts/:id/edit" component={NewOrEditPost} />
       </Switch>
     </Router>
