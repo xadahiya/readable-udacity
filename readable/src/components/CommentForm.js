@@ -4,6 +4,7 @@ import * as CommentActions from '../actions/Comments';
 import * as CommentsApi from '../api/Comments';
 import serializeForm from 'form-serialize';
 import uuid from 'uuid';
+import {withRouter} from 'react-router-dom';
 
 class CommentForm extends Component {
 
@@ -22,7 +23,7 @@ class CommentForm extends Component {
     this.setState({
       [event.target.id]: event.target.value
     });
-    console.log(this.state)
+    // console.log(this.state)
   };
 
   componentWillMount() {
@@ -63,7 +64,7 @@ class CommentForm extends Component {
       formData.timestamp = Date.now()
       CommentsApi.addToPost(formData);
     }
-
+    this.props.history.goBack()
   }
 
   render() {
@@ -103,4 +104,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CommentForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CommentForm));

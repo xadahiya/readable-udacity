@@ -5,6 +5,7 @@ import * as CategoryActions from '../actions/Category';
 import * as PostActions from '../actions/Posts';
 import uuid from 'uuid';
 import * as PostsApi from '../api/Posts';
+import {withRouter} from 'react-router-dom';
 
 class PostForm extends Component {
 
@@ -25,12 +26,11 @@ class PostForm extends Component {
     this.setState({
       [event.target.id]: event.target.value
     });
-    console.log(this.state)
+    // console.log(this.state)
   };
 
   componentWillMount() {
     const {getCategories, getPost, post_id} = this.props;
-
     if (post_id !== undefined) {
       getPost(post_id)
     }
@@ -39,8 +39,6 @@ class PostForm extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.log("sdfaf", newProps.post)
-
     this.setState({
       ...newProps.post
     });
@@ -64,6 +62,8 @@ class PostForm extends Component {
       PostsApi.add(formData);
     }
 
+    //Go back
+    this.props.history.goBack()
   }
 
   render() {
@@ -125,4 +125,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostForm));

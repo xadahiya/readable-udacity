@@ -21,7 +21,7 @@ class PostDetails extends Component {
     const post = this.props.post || {}
     return (
       <div>
-        <Post post={post} key={post.id} vote={this.props.vote} deletePost={this.props.deletePost}/>
+        <Post post={post} key={post.id} vote={this.props.voteFromDetailPage} deletePost={this.props.deletePost}/>
         <Link to={`/${post.category}/posts/${post.id}/new_comment`} className="btn btn-primary btn-new-comment">Add Comment</Link>
         <SortSelect sortTarget="comments"/>
         <Comments post_id={this.props.post_id}/>
@@ -39,7 +39,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     get: (id) => dispatch(PostActions.get(id)),
     deletePost: (post) => dispatch(PostActions.deletePost(post)),
-    vote: (id, vote) => dispatch(PostActions.vote(id, vote))
+    voteFromDetailPage: (id, vote) => dispatch(PostActions.voteFromDetailPage(id, vote))
 
   }
 }

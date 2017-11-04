@@ -9,7 +9,7 @@ import {
   CLEAR_FORM_COMMENT
 } from '../utils/ActionConstants';
 
-function Comments(state = {}, action) {
+function Comments(state = {sortKeyComments: "voteScore"}, action) {
 
   switch (action.type) {
     case GET_COMMENT_SUCCESS:
@@ -18,15 +18,15 @@ function Comments(state = {}, action) {
         comment: action.data
       }
     case GET_COMMENT_ERR:
-      console.log(action.err);
+      // console.log(action.err);
       return state
     case GET_ALL_FOR_POST_SUCCESS:
       return {
         ...state,
-        comments: action.data
+        comments: action.data.sort((a, b) => a[state.sortKeyComments] < b[state.sortKeyComments])
       }
     case GET_ALL_FOR_POST_ERR:
-      console.log(action.err);
+      // console.log(action.err);
       return state
     case DELETE_COMMENT:
       return {
@@ -51,11 +51,11 @@ function Comments(state = {}, action) {
         })
       }
     case SORT_COMMENTS:
-      console.log("Sorting by ", action.prop);
+      // console.log("Sorting by ", action.prop);
       return {
         ...state,
-        comments: state['comments'].sort((a, b) => a[action.prop] < b[action.prop]),
-        sortKey: action.prop
+        comments: state.comments.sort((a, b) => a[action.prop] < b[action.prop]),
+        sortKeyComments: action.prop
       }
     case CLEAR_FORM_COMMENT:
       return {

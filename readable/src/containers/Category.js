@@ -1,29 +1,32 @@
 import React, {Component} from 'react';
 import Navbar from '../components/Navbar';
-import Categories from '../components/Categories';
 import Posts from '../components/Posts';
 import SortSelect from '../components/SortSelect'
 import {connect} from 'react-redux';
 import * as PostsActions from '../actions/Posts';
 import {Link} from 'react-router-dom';
 
-class App extends Component {
+class Category extends Component {
 
   componentWillMount() {
 
-    const {getAll} = this.props;
+    const {getAllForCategory} = this.props;
+    const {category} = this.props.match.params;
 
-      getAll()
+    if (category) {
+      getAllForCategory(category)
+    }
   }
 
   render() {
+    const {category} = this.props.match.params;
     return (
       <div className="container-fluid">
         <Navbar/>
-        <Categories/>
+        <h1>Category : {category}</h1>
         <SortSelect sortTarget="posts"/>
         <Link to="/new" className="btn btn-primary btn-lg btn-new-post">Add Post</Link>
-        <Posts/>
+        <Posts category={category}/>
       </div>
     );
   }
@@ -31,8 +34,9 @@ class App extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAll: () => dispatch(PostsActions.getAll())
+    getAllForCategory: (category) => dispatch(PostsActions.getAllForCategory(category))
+
   }
 }
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(Category);

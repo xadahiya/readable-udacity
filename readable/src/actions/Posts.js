@@ -5,6 +5,7 @@ import {
   GET_ALL_POSTS_SUCCESS,
   GET_ALL_POSTS_ERR,
   VOTE_ON_POST,
+  VOTE_ON_POST_FROM_DETAIL_PAGE,
   CLEAR_FORM_POST,
   DELETE_POST,
   GET_ALL_POSTS_FOR_CATEGORY_SUCCESS,
@@ -51,7 +52,7 @@ export function get(id) {
   const data = PostsApi.get(id)
   return dispatch => {
     data.then(data => {
-      console.log(data)
+      // console.log(data)
       dispatch(getSuccess(data))
     }).catch(err => dispatch(getErr(err)))
   }
@@ -71,6 +72,11 @@ export function vote(id, vote) {
   return {type: VOTE_ON_POST, id, vote}
 }
 
+
+export function voteFromDetailPage(id, vote) {
+  PostsApi.vote(id, vote)
+  return {type: VOTE_ON_POST_FROM_DETAIL_PAGE, id, vote}
+}
 // Actions related to getAllForCategory()
 
 export function getAllForCategorySuccess(data) {
@@ -89,7 +95,7 @@ export function getAllForCategory(category) {
   const data = PostsApi.getAllForCategory(category)
   return dispatch => {
     data.then(data => {
-      console.log(data)
+      // console.log(data)
       dispatch(getAllForCategorySuccess(data))
     }).catch(err => dispatch(getAllForCategoryErr(err)))
   }

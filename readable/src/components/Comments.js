@@ -14,13 +14,8 @@ class Comments extends Component {
     }
   }
 
-  getDateTimeFromTimestamp = (unixTimeStamp) => {
-    var date = new Date(unixTimeStamp);
-    return ('0' + date.getDate()).slice(-2) + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + date.getFullYear() + ' ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
-  }
-
   genCommentList = (comments) => {
-    console.log(comments)
+    // console.log(comments)
     if (comments !== undefined && comments.length > 0) {
       return comments.map((comment) => ((!comment.deleted) && (<Comment key={comment.id} comment={comment} vote={this.props.vote} deleteComment={this.props.deleteComment}/>)))
     } else {
@@ -29,6 +24,7 @@ class Comments extends Component {
       )
     }
   }
+
   render() {
 
     let comments = this.props.comments;
@@ -44,7 +40,7 @@ class Comments extends Component {
 
 function mapStateToProps(state) {
 
-  return {comments: state.Comments.comments}
+  return {comments: state.Comments.comments, sortKeyComments: state.Comments.sortKeyComments}
 }
 
 const mapDispatchToProps = (dispatch) => {

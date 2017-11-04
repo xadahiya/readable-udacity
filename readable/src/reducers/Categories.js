@@ -9,7 +9,7 @@ function Categories(state = {}, action) {
         categories: action.data
       }
     case GET_CATEGORIES_ERR:
-      console.log(action.err);
+      // console.log(action.err);
       return state
     default:
       return state

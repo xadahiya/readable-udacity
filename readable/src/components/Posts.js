@@ -5,19 +5,18 @@ import * as PostActions from '../actions/Posts';
 
 class Posts extends Component {
 
-  componentWillMount() {
-    // Manage direct url loading
-    const {getAllForCategory, category} = this.props;
+  state = {
+    posts : this.props.posts
+  }
 
-    if (category) {
-      getAllForCategory(category)
+
+    componentWillReceiveProps(newProps) {
+      this.setState({
+        posts: newProps.posts
+      });
+      // console.log(this.state.posts)
     }
-  }
 
-  getDateTimeFromTimestamp = (unixTimeStamp) => {
-    var date = new Date(unixTimeStamp);
-    return ('0' + date.getDate()).slice(-2) + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + date.getFullYear() + ' ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
-  }
 
   genPostList = (posts) => {
     if (posts !== undefined && posts.length > 0) {
@@ -28,9 +27,10 @@ class Posts extends Component {
       )
     }
   }
+
   render() {
 
-    let posts = this.props.posts;
+    const  {posts} = this.state;
     return (
       <div className="Posts">
         <h2>
@@ -43,12 +43,11 @@ class Posts extends Component {
 
 function mapStateToProps(state) {
 
-  return {posts: state.Posts.posts}
+  return {posts: state.Posts.posts, sortKeyPosts: state.Posts.sortKeyPosts}
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAllForCategory: (category) => dispatch(PostActions.getAllForCategory(category)),
     deletePost: (post) => dispatch(PostActions.deletePost(post)),
     vote: (id, vote) => dispatch(PostActions.vote(id, vote))
   }

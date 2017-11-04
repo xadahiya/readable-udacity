@@ -4,9 +4,12 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './styles/index.css';
 
 import App from './containers/App';
+import Category from './containers/Category';
 import PostPage from './containers/PostPage';
-import NewOrEditPost from './containers/NewOrEditPost';
-import NewOrEditComment from './containers/NewOrEditComment';
+import NewPost from './containers/NewPost';
+import EditPost from './containers/EditPost';
+import NewComment from './containers/NewComment';
+import EditComment from './containers/EditComment';
 import registerServiceWorker from './registerServiceWorker';
 import {createStore, applyMiddleware, compose} from 'redux';
 import reducer from './reducers/Main';
@@ -23,13 +26,13 @@ const Root = ({store}) => (
   <Provider store={store}>
     <Router>
       <Switch>
-        <Route exact path="/new" component={NewOrEditPost}/>
-        <Route exact path="/:category/posts/:id/new_comment" component={NewOrEditComment}/>
+        <Route exact path="/new" component={NewPost}/>
+        <Route exact path="/:category/posts/:id/new_comment" component={NewComment}/>
         <Route exact path="/" component={App}/>
-        <Route exact path="/:category/posts" component={App}/>
+        <Route exact path="/:category/posts" component={Category}/>
         <Route exact path="/:category/posts/:id" component={PostPage}/>
-        <Route exact path="/:category/posts/:id/edit" component={NewOrEditPost}/>
-        <Route exact path="/comments/:comment_id/edit" component={NewOrEditComment}/>
+        <Route exact path="/:category/posts/:id/edit" component={EditPost}/>
+        <Route exact path="/comments/:comment_id/edit" component={EditComment}/>
       </Switch>
     </Router>
   </Provider>

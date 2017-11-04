@@ -29,9 +29,6 @@ class SortSelect extends Component {
 
 }
 
-const mapStateToProps = (state) => {
-  return {}
-}
 const mapDispatchToProps = (dispatch) => {
   return {
     sortPostsBy: (prop) => dispatch(PostActions.sortBy(prop)),
@@ -40,4 +37,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SortSelect)
+export default connect(null, mapDispatchToProps)(SortSelect)

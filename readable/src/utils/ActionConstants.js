@@ -12,6 +12,7 @@ export const GET_POST_ERR = 'GET_POST_ERR';
 export const CLEAR_FORM_POST = 'CLEAR_FORM_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const VOTE_ON_POST = 'VOTE_ON_POST';
+export const VOTE_ON_POST_FROM_DETAIL_PAGE = "VOTE_ON_POST_FROM_DETAIL_PAGE";
 export const SORT_POSTS = 'SORT_POSTS';
 
 // Related to comments

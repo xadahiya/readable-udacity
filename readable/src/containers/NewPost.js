@@ -3,7 +3,8 @@ import Navbar from '../components/Navbar';
 import PostForm from '../components/PostForm';
 import {connect} from 'react-redux';
 
-class NewOrEditPost extends Component {
+
+class NewPost extends Component {
 
   componentWillMount() {}
 
@@ -11,18 +12,10 @@ class NewOrEditPost extends Component {
     return (
       <div className="container-fluid">
         <Navbar/>
-        <PostForm post_id={this.props.match.params.id}/>
+        <PostForm/>
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {}
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NewOrEditPost);
+export default connect()(NewPost);

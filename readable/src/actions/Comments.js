@@ -49,7 +49,7 @@ export function getComment(id) {
   const data = CommentsApi.getDetails(id)
   return dispatch => {
     data.then(data => {
-      console.log(data)
+      // console.log(data)
       dispatch(getCommentSuccess(data))
     }).catch(err => dispatch(getCommentErr(err)))
   }

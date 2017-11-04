@@ -18,32 +18,30 @@ export default class Post extends Component {
         <div className="post-meta1">
           <span>Comments : {post.commentCount}
           </span>
-          <span>Votes: {post.voteScore}
-          </span>
+
           <Button onClick={() => this.props.vote(post.id, "upVote")}>
-            Upvote
+          Upvote
           </Button>
+          <span>Votes: {post.voteScore}</span>
           <Button onClick={() => this.props.vote(post.id, "downVote")}>
             Downvote
           </Button>
 
         </div>
         <div className="post-meta2">
-          <span>By: {post.author}</span>
+          <span>By: {post.author} </span>
           <span>
             on: {this.getDateTimeFromTimestamp(post.timestamp)}
-            in</span>
+            in </span>
+            <Link to={`/${post.category}/posts`}>{post.category}</Link>
           <Button onClick={() => this.props.deletePost(post)}>
              delete
           </Button>
-          <Link to={`/${post.category}/posts`}>
-            {post.category}
-          </Link>
           <Link to={`/${post.category}/posts/${post.id}/edit`}>
             Edit
           </Link>
           <Link to={`/${post.category}/posts/${post.id}`}>
-           View  
+           View
           </Link>
         </div>
       </div>
