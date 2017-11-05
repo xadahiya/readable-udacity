@@ -16,10 +16,13 @@ class SortSelect extends Component {
   }
 
   render() {
+
+    const {sortKeyPosts, sortKeyComments, sortTarget} = this.props;
+    console.log(sortKeyPosts, sortKeyComments, sortTarget);
     return (
       <div className="sort-select-container">
         <span className="header">Sort By:</span>
-        <select className="sort-select form-control" id="sort-by" name="sort-by" onChange={this.handleChange}>
+        <select className="sort-select form-control" id="sort-by" value={sortTarget === "posts" ? sortKeyPosts : sortKeyComments} name="sort-by" onChange={this.handleChange}>
           <option value="voteScore">Vote Score</option>
           <option value="timestamp">Timestamp</option>
         </select>
@@ -27,6 +30,13 @@ class SortSelect extends Component {
     )
   }
 
+}
+
+const mapStateToProps = (state) => {
+  return {
+    sortKeyComments : state.Comments.sortKeyComments,
+    sortKeyPosts: state.Posts.sortKeyPosts
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -37,4 +47,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(SortSelect)
+export default connect(mapStateToProps, mapDispatchToProps)(SortSelect)
