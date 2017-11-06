@@ -46,11 +46,17 @@ function Posts(state = {sortKeyPosts: "voteScore"}, action) {
         post: {}
       }
     case DELETE_POST:
-      return {
+      return state.posts ? {
         ...state,
         posts: state.posts.filter((post) => {
           return post.id !== action.post.id
-        })
+        }),
+        post:{}
+
+      }:
+      {
+        ...state,
+        post:{}
       }
     case VOTE_ON_POST:
       return state.posts ?

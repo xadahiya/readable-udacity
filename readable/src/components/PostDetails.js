@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import Comments from './Comments';
 import * as PostActions from '../actions/Posts';
 import SortSelect from '../components/SortSelect'
+import {withRouter} from 'react-router-dom';
 
 class PostDetails extends Component {
 
@@ -17,8 +18,19 @@ class PostDetails extends Component {
     }
   }
 
+  componentWillReceiveProps(props){
+    if (! props.post.id){
+      this.props.history.push("/404")
+    }
+  }
+
   render() {
-    const post = this.props.post || {}
+
+    let post = this.props.post
+
+    if(post === undefined){
+      post = {}
+    }
     return (
       <div>
         <Post post={post} key={post.id} vote={this.props.voteFromDetailPage} deletePost={this.props.deletePost}/>
@@ -44,4 +56,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostDetails);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostDetails));

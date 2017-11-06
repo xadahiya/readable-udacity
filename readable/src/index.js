@@ -8,6 +8,7 @@ import Category from './containers/Category';
 import PostPage from './containers/PostPage';
 import NewPost from './containers/NewPost';
 import EditPost from './containers/EditPost';
+import NotFoundPage from './containers/404';
 import NewComment from './containers/NewComment';
 import EditComment from './containers/EditComment';
 import registerServiceWorker from './registerServiceWorker';
@@ -29,6 +30,7 @@ const Root = ({store}) => (
         <Route exact path="/new" component={NewPost}/>
         <Route exact path="/:category/posts/:id/new_comment" component={NewComment}/>
         <Route exact path="/" component={App}/>
+        <Route exact path="/404" component={NotFoundPage}/>
         <Route exact path="/:category/posts" component={Category}/>
         <Route exact path="/:category/posts/:id" component={PostPage}/>
         <Route exact path="/:category/posts/:id/edit" component={EditPost}/>
