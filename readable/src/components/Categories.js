@@ -1,15 +1,18 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as CategoryActions from '../actions/Category';
+import * as PostActions from '../actions/Posts';
 import {Link} from 'react-router-dom';
 import {ButtonGroup} from 'react-bootstrap';
 
 class Categories extends Component {
 
   componentWillMount() {
+    console.log(this.props)
     const {getCategories} = this.props;
     getCategories()
   }
+
 
   genCategoryList = (categories) => {
 
@@ -23,7 +26,7 @@ class Categories extends Component {
             {categories.map((category) => {
 
               return (
-                <Link key={category.path} to={`/${category.path}/posts`} className="btn btn-default btn-lg cat-link">{category.name}</Link>
+                <Link key={category.path} to={`/${category.path}/posts`} onClick={() => this.props.getAllForCategory(category.path)} className="btn btn-default btn-lg cat-link">{category.name}</Link>
               )
             })
 }
@@ -48,12 +51,14 @@ class Categories extends Component {
 
 function mapStateToProps(state) {
 
-  return {categories: state.Categories.categories}
+  return {categories: state.Categories.categories,
+  selected_category: state.Categories.selected_category}
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getCategories: () => dispatch(CategoryActions.getCategories()),
+    getAllForCategory: (category) => dispatch(PostActions.getAllForCategory(category))
   }
 }
 

@@ -18,10 +18,13 @@ import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import PropTypes from 'prop-types';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import * as PostsActions from './actions/Posts';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)))
+store.dispatch(PostsActions.getAll())
+
 
 const Root = ({store}) => (
   <Provider store={store}>
